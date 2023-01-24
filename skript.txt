@@ -1,0 +1,34 @@
+class Repository:
+    def __init__(self):
+        self.data = {}
+
+    def save(self, key, value):
+        self.data[key] = value
+
+    def get(self, key):
+        return self.data.get(key)
+
+    def delete(self, key):
+        if key in self.data:
+            del self.data[key]
+
+    def update(self, key, value):
+        if key in self.data:
+            self.data[key] = value
+        else:
+            raise KeyError("Key not found")
+
+    def list(self):
+        return self.data.items()
+
+# Example usage:
+
+repo = Repository()
+repo.save("key1", "value1")
+repo.save("key2", "value2")
+print(repo.get("key1")) # Output: "value1"
+repo.update("key1", "new value")
+print(repo.get("key1")) # Output: "new value"
+repo.delete("key1")
+print(repo.get("key1")) # Output: None
+print(repo.list()) # Output: dict_items([('key2', 'value2')])
